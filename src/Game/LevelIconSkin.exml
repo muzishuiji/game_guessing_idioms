@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LevelIconSkin" states="up,down,disabled" width="77" height="77" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<e:Image id="gs_select_1_png" source="gs_select_1_png" horizontalCenter="0" verticalCenter="0" includeIn="up,down" scale9Grid="9,9,59,60" fillMode="repeat"/>
+    <e:Image id="gs_select_dis_png" source="gs_select_dis_png" includeIn="disabled" horizontalCenter="0" verticalCenter="0" scale9Grid="9,10,61,60"/>
+    <e:Label id="lb_level" text="555" horizontalCenter="0" verticalCenter="0"/>
+</e:Skin>
