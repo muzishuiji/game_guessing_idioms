@@ -60,11 +60,9 @@ class Main extends eui.UILayer {
     private async runGame() {
         await this.loadResource();
         await platform.login();
-        // let sceneBegin=new SceneBegin();
+        let sceneBegin=new SceneBegin();
         // console.log(sceneBegin);
-        // await this.addChild(sceneBegin);
-        let sceneLevels = new SceneLevels();
-        await this.addChild(sceneLevels);
+        await this.addChild(sceneBegin);
         const userInfo = await platform.getUserInfo();
         console.log(userInfo);
         

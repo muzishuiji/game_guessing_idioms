@@ -16,9 +16,7 @@ class LevelIconSkin extends eui.Button {
 	}
 	public set Level(value) {
 		this.p.then(()=>{
-			console.log(this.lb_level.text);
 			this.lb_level.text = value.toString();
-			console.log(this.x,this.lb_level.text);
 		});
 	}
 }

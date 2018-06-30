@@ -2,6 +2,16 @@ class SceneLevels extends eui.Component{
 	private btn_back = new eui.Button();
 	private group_levels = new eui.Group();
 	private img_arrow = new eui.Image();
+	private sel_level:number = 0;
+	private LevelIcons:LevelIconSkin[] =[];
+	// 单例 该方法将该类实例化之后的对象存在于shared属性中,并返回这个属性
+	private static shared = new SceneLevels();
+	public static Shared() {
+		if(SceneLevels.shared == null) {
+			SceneLevels.shared = new SceneLevels();
+		}
+		return SceneLevels.shared;
+	}
 	public constructor() {
 		
 		super();
@@ -28,6 +38,8 @@ class SceneLevels extends eui.Component{
 			this.group_levels.addChildAt(img, 0);
 		}
 		// 以正弦曲线绘制关卡图标的路径
+		// 获取当前关卡号
+		var milestone:number = LevelDataManager.Shared().Mileston;
 		for(var i = 0; i < 400; i++) {
 			var icon = new LevelIconSkin();		
 			
@@ -38,6 +50,10 @@ class SceneLevels extends eui.Component{
 			icon.Level = i + 1;
             group.addChild(icon);
             icon.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onclick_level,this);
+			// 根据进度设置关卡显示
+			icon.enabled = i < milestone;
+			// 将所有关卡对象保存在一个列表中
+			this.LevelIcons.push(icon);
 		}
 		// 开启位图缓存模式
 		group.cacheAsBitmap = true;
@@ -55,12 +71,32 @@ class SceneLevels extends eui.Component{
 		group.addChild(this.img_arrow);
 	}
 	private onclick_back() {
-
+		// 跳转到下一个场景
+		this.parent.addChild(SceneBegin.Shared());
+		// 移除自身
+		this.parent.removeChild(this);
 	}
 	private onclick_level(event) {
 		var icon = event.currentTarget;
-		console.log(icon.Level);
-		this.img_arrow.x = icon.x;
-    	this.img_arrow.y = icon.y;
+		// console.log(icon.Level);
+		// sel_level 是选定关卡的标记
+		if(this.sel_level != icon.Level) {
+			this.img_arrow.x = icon.x;
+    		this.img_arrow.y = icon.y;
+			this.sel_level = icon.Level;
+		}
+		
+	}
+	// 打开指定的关卡,如果大于最远关卡,则保存数据也跟着调整
+	public OpenLevel(level:number) {
+		var icon = this.LevelIcons[level - 1];
+		icon.enabled = true;
+		if(level > LevelDataManager.Shared().Mileston) {
+			LevelDataManager.Shared().Mileston = level;
+			// 	同时将选定标记置于其上
+			this.img_arrow.x = icon.x;
+    		this.img_arrow.y = icon.y;
+			this.sel_level = icon.Level;
+		}
 	}
 }
