@@ -13,6 +13,8 @@ class SceneGame extends eui.Component {
 		super();
 		this.skinName = "src/Game/SceneGameSkin.exml";
 		this.btn_back.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onclick_back, this);
+		this.btn_text.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onclick_next, this);
+
 	}
 	// 对象变量
 	private group_answer = new eui.Group();
@@ -20,6 +22,11 @@ class SceneGame extends eui.Component {
 	private img_question = new eui.Image();
 	private btn_back = new eui.Group();
 	private levelIndex:number;
+	private group_win = new eui.Group();  // 胜利界面的Group组件
+	private btn_text = new eui.Button();  // 下一个题目
+	private lb_explain = new eui.Label();  //解释
+	private lb_from = new eui.Label();     // 来源
+
 	// 初始化关卡
 	public InitLevel(level:number) {
 		// 保存正在进行的关卡
@@ -92,9 +99,24 @@ class SceneGame extends eui.Component {
 			}
 			if(check_str === LevelDataManager.Shared().GetLevel(this.levelIndex).answer) {
 				console.log("win");
+				this.showWin();  // 调用显示成功的结果的方法
 			}
 		}
 	}
+	// 跳转到下一题
+	private onclick_next() {
+		this.group_win.visible = false;
+		SceneLevels.Shared().OpenLevel(this.levelIndex + 1);
+		this.InitLevel(this.levelIndex + 1);
+	}
+	// 显示结果
+	private showWin() {
+		this.group_win.visible = true;
+		var leveldata = LevelDataManager.Shared().GetLevel(this.levelIndex);
+		this.lb_from.text = leveldata.tip;
+   		this.lb_explain.text = leveldata.content;
+	}
+
 	// 点击返回按钮
 	private onclick_back(){
 		this.parent.addChild(SceneLevels.Shared());

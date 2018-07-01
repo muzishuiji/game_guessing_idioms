@@ -35,4 +35,28 @@
             </e:Skin>
 		</e:skinName>
 	</e:Button>
+	<e:Image id="img_question" width="390" height="260" y="179" horizontalCenter="0"/>
+	<e:Group id="group_answer" width="373" height="95" x="177" y="464">
+		<ns1:AnswerWord skinName="WordSkin" y="478" x="185"/>
+		<ns1:AnswerWord skinName="WordSkin" y="478" x="284"/>
+		<ns1:AnswerWord skinName="WordSkin" y="478" x="378"/>
+		<ns1:AnswerWord skinName="WordSkin" y="478" x="475"/>
+		<e:layout>
+			<e:HorizontalLayout gap="15"/>
+		</e:layout>
+	</e:Group>
+	<e:Group id="group_win" left="0" top="0" bottom="0" right="0" visible="false">
+		<e:Rect left="0" top="0" bottom="0" right="0" fillAlpha="0.53"/>
+		<e:Image source="Result_png" horizontalCenter="0" verticalCenter="260"/>
+		<e:Button id="btn_next" x="432" y="941">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="ResultBtn_png" source.down="ResultBtn1_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Label id="lb_from" text="标签" x="113" y="700" textColor="0x000000" multiline="true" width="501" height="65"/>
+		<e:Label id="lb_explain" multiline="true" textColor="0x000000" text="标签" height="127" y="805" width="501" x="113"/>
+	</e:Group>
 </e:Skin>
