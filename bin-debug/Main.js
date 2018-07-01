@@ -98,7 +98,7 @@ var Main = (function (_super) {
     };
     Main.prototype.runGame = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var sceneBegin, userInfo;
+            var userInfo;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.loadResource()];
@@ -107,14 +107,12 @@ var Main = (function (_super) {
                         return [4 /*yield*/, platform.login()];
                     case 2:
                         _a.sent();
-                        sceneBegin = new SceneBegin();
+                        // let sceneBegin=new SceneBegin();
                         // console.log(sceneBegin);
-                        return [4 /*yield*/, this.addChild(sceneBegin)];
-                    case 3:
-                        // console.log(sceneBegin);
-                        _a.sent();
+                        // await this.addChild(sceneBegin);
+                        this.addChild(SceneLevels.Shared());
                         return [4 /*yield*/, platform.getUserInfo()];
-                    case 4:
+                    case 3:
                         userInfo = _a.sent();
                         console.log(userInfo);
                         return [2 /*return*/];

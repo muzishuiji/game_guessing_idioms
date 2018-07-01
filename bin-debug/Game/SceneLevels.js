@@ -85,11 +85,18 @@ var SceneLevels = (function (_super) {
     SceneLevels.prototype.onclick_level = function (event) {
         var icon = event.currentTarget;
         // console.log(icon.Level);
-        // sel_level 是选定关卡的标记
+        // sel_level 是选定关卡的标记, 如果sel_level 的值不等于当前点击的关卡,就将当前点击的关卡数赋给sel_level
+        // 否则进入并开始游戏
         if (this.sel_level != icon.Level) {
             this.img_arrow.x = icon.x;
             this.img_arrow.y = icon.y;
             this.sel_level = icon.Level;
+        }
+        else {
+            var begin = SceneGame.Shared();
+            this.parent.addChild(begin);
+            begin.InitLevel(icon.Level);
+            this.parent.removeChild(this);
         }
     };
     // 打开指定的关卡,如果大于最远关卡,则保存数据也跟着调整

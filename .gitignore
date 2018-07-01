@@ -1,1 +1,3 @@
 resource/default.res.json
+node_modules/
+bin-debug/

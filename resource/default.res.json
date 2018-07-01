@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "",
+			"keys": "BackBtn_png,BackBtn1_png,btn_disable_png,btn_music_down_png,btn_music_png,btn_sound_down_png,btn_sound_png,Dialog_png,GameBG1_jpg,GameBG2_jpg,GameBG3_jpg,gs_select_1_png,gs_select_dis_png,MoneyBG_png,MoneyPic_png,PageDownBtn_png,PageUpBtn_png,Result_png,ResultBtn_png,ResultBtn1_png,StartBtn_png,StartBtn1_png,WordFrame_png,YesBtn_jpg,YesBtn1_jpg,questions_json",
 			"name": "preload"
 		}
 	],
@@ -3260,6 +3260,11 @@
 			"url": "assets/sound/wrong.mp3",
 			"type": "sound",
 			"name": "wrong_mp3"
+		},
+		{
+			"url": "assets/questions.json",
+			"type": "json",
+			"name": "questions_json"
 		}
 	]
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="SceneGameSkin" width="720" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="GameBG3_jpg" left="0" top="0" bottom="0" right="0"/>
+    <e:Image source="WordFrame_png" x="39" y="120"/>
+	<e:Group id="group_words" width="538" height="417" x="108" y="637">
+		<ns1:Word x="80" y="106" skinName="WordSkin"/>
+		<ns1:Word skinName="WordSkin" y="116" x="90"/>
+		<ns1:Word skinName="WordSkin" y="126" x="100"/>
+		<ns1:Word skinName="WordSkin" y="136" x="110"/>
+		<ns1:Word skinName="WordSkin" y="146" x="120"/>
+		<ns1:Word skinName="WordSkin" y="156" x="130"/>
+		<ns1:Word skinName="WordSkin" y="166" x="140"/>
+		<ns1:Word skinName="WordSkin" y="176" x="150"/>
+		<ns1:Word skinName="WordSkin" y="186" x="160"/>
+		<ns1:Word skinName="WordSkin" y="196" x="170"/>
+		<ns1:Word skinName="WordSkin" y="206" x="180"/>
+		<ns1:Word skinName="WordSkin" y="216" x="190"/>
+		<ns1:Word skinName="WordSkin" y="226" x="200"/>
+		<ns1:Word skinName="WordSkin" y="236" x="210"/>
+		<ns1:Word skinName="WordSkin" y="246" x="220"/>
+		<ns1:Word skinName="WordSkin" y="256" x="230"/>
+		<ns1:Word skinName="WordSkin" y="266" x="240"/>
+		<ns1:Word skinName="WordSkin" y="276" x="250"/>
+		<ns1:Word skinName="WordSkin" y="286" x="260"/>
+		<ns1:Word skinName="WordSkin" y="296" x="270"/>
+		<e:layout>
+		<e:TileLayout horizontalGap="30" verticalGap="30"/>
+		</e:layout>
+	</e:Group>
+	<e:Button id="btn_back" x="11" y="8">
+		<e:skinName>
+            <e:Skin states="up,down,disabled">
+                <e:Image width="100%" height="100%" source="BackBtn_png" source.down="BackBtn1_png"/>
+                <e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+            </e:Skin>
+		</e:skinName>
+	</e:Button>
+</e:Skin>
