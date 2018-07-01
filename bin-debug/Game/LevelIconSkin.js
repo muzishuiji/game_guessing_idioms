@@ -29,9 +29,7 @@ var LevelIconSkin = (function (_super) {
         set: function (value) {
             var _this = this;
             this.p.then(function () {
-                console.log(_this.lb_level.text);
                 _this.lb_level.text = value.toString();
-                console.log(_this.x, _this.lb_level.text);
             });
         },
         enumerable: true,

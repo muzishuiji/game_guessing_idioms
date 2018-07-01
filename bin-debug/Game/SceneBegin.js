@@ -18,9 +18,20 @@ var SceneBegin = (function (_super) {
         console.log("asdfsd");
         return _this;
     }
+    SceneBegin.Shared = function () {
+        if (SceneBegin.shared == null) {
+            SceneBegin.shared = new SceneBegin();
+        }
+        return SceneBegin.shared;
+    };
     SceneBegin.prototype.onclick_begin = function () {
         console.log("game begin!");
+        this.parent.addChild(SceneLevels.Shared());
+        // 点击进入游戏的时候把当前界面移除
+        this.parent.removeChild(this);
     };
+    // 单例
+    SceneBegin.shared = new SceneBegin();
     return SceneBegin;
 }(eui.Component));
 __reflect(SceneBegin.prototype, "SceneBegin");

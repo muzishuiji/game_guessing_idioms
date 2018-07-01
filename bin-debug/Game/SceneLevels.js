@@ -15,11 +15,19 @@ var SceneLevels = (function (_super) {
         _this.btn_back = new eui.Button();
         _this.group_levels = new eui.Group();
         _this.img_arrow = new eui.Image();
+        _this.sel_level = 0;
+        _this.LevelIcons = [];
         _this.skinName = "src/Game/SceneLevelsSkin.exml";
         _this.btn_back.addEventListener(egret.TouchEvent.TOUCH_TAP, _this.onclick_back, _this);
         _this.addEventListener(eui.UIEvent.COMPLETE, _this.loadPage, _this);
         return _this;
     }
+    SceneLevels.Shared = function () {
+        if (SceneLevels.shared == null) {
+            SceneLevels.shared = new SceneLevels();
+        }
+        return SceneLevels.shared;
+    };
     SceneLevels.prototype.loadPage = function () {
         // 创建地图选项
         var row = 20;
@@ -38,6 +46,8 @@ var SceneLevels = (function (_super) {
             this.group_levels.addChildAt(img, 0);
         }
         // 以正弦曲线绘制关卡图标的路径
+        // 获取当前关卡号
+        var milestone = LevelDataManager.Shared().Mileston;
         for (var i = 0; i < 400; i++) {
             var icon = new LevelIconSkin();
             icon.y = spany * i / 2;
@@ -47,6 +57,10 @@ var SceneLevels = (function (_super) {
             icon.Level = i + 1;
             group.addChild(icon);
             icon.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onclick_level, this);
+            // 根据进度设置关卡显示
+            icon.enabled = i < milestone;
+            // 将所有关卡对象保存在一个列表中
+            this.LevelIcons.push(icon);
         }
         // 开启位图缓存模式
         group.cacheAsBitmap = true;
@@ -63,13 +77,35 @@ var SceneLevels = (function (_super) {
         group.addChild(this.img_arrow);
     };
     SceneLevels.prototype.onclick_back = function () {
+        // 跳转到下一个场景
+        this.parent.addChild(SceneBegin.Shared());
+        // 移除自身
+        this.parent.removeChild(this);
     };
     SceneLevels.prototype.onclick_level = function (event) {
         var icon = event.currentTarget;
-        console.log(icon.Level);
-        this.img_arrow.x = icon.x;
-        this.img_arrow.y = icon.y;
+        // console.log(icon.Level);
+        // sel_level 是选定关卡的标记
+        if (this.sel_level != icon.Level) {
+            this.img_arrow.x = icon.x;
+            this.img_arrow.y = icon.y;
+            this.sel_level = icon.Level;
+        }
     };
+    // 打开指定的关卡,如果大于最远关卡,则保存数据也跟着调整
+    SceneLevels.prototype.OpenLevel = function (level) {
+        var icon = this.LevelIcons[level - 1];
+        icon.enabled = true;
+        if (level > LevelDataManager.Shared().Mileston) {
+            LevelDataManager.Shared().Mileston = level;
+            // 	同时将选定标记置于其上
+            this.img_arrow.x = icon.x;
+            this.img_arrow.y = icon.y;
+            this.sel_level = icon.Level;
+        }
+    };
+    // 单例 该方法将该类实例化之后的对象存在于shared属性中,并返回这个属性
+    SceneLevels.shared = new SceneLevels();
     return SceneLevels;
 }(eui.Component));
 __reflect(SceneLevels.prototype, "SceneLevels");
