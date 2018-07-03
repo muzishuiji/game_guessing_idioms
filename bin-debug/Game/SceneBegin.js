@@ -13,9 +13,13 @@ var SceneBegin = (function (_super) {
     function SceneBegin() {
         var _this = _super.call(this) || this;
         _this.btn_begin = new eui.Button();
+        _this.btn_setting = new eui.Button();
         _this.skinName = "src/Game/SceneBeginSkin.exml";
         _this.btn_begin.addEventListener(egret.TouchEvent.TOUCH_TAP, _this.onclick_begin, _this);
+        _this.btn_setting.addEventListener(egret.TouchEvent.TOUCH_TAP, _this.onclick_setting, _this);
         console.log("asdfsd");
+        // 开始播放背景音乐
+        SoundMenager.Shared().PlayBGM();
         return _this;
     }
     SceneBegin.Shared = function () {
@@ -26,9 +30,16 @@ var SceneBegin = (function (_super) {
     };
     SceneBegin.prototype.onclick_begin = function () {
         console.log("game begin!");
+        // 开始播放点击音乐
+        SoundMenager.Shared().PlayClick();
         this.parent.addChild(SceneLevels.Shared());
         // 点击进入游戏的时候把当前界面移除
         this.parent.removeChild(this);
+    };
+    // 设置按钮的回调
+    SceneBegin.prototype.onclick_setting = function () {
+        SoundMenager.Shared().PlayClick();
+        this.addChild(GameSetting.Shared());
     };
     // 单例
     SceneBegin.shared = new SceneBegin();

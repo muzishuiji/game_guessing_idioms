@@ -60,13 +60,12 @@ class Main extends eui.UILayer {
     private async runGame() {
         await this.loadResource();
         await platform.login();
-        // let sceneBegin=new SceneBegin();
-        // console.log(sceneBegin);
-        // await this.addChild(sceneBegin);
-        this.addChild(SceneLevels.Shared());
+        let sceneBegin = SceneBegin.Shared();
+        await this.addChild(sceneBegin);
+        // await this.addChild(SceneLevels.Shared());
         const userInfo = await platform.getUserInfo();
         console.log(userInfo);
-        
+        await SoundMenager.Shared();
     }
     private loading;
     private async loadResource() {

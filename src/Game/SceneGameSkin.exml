@@ -59,4 +59,12 @@
 		<e:Label id="lb_from" text="标签" x="113" y="700" textColor="0x000000" multiline="true" width="501" height="65"/>
 		<e:Label id="lb_explain" multiline="true" textColor="0x000000" text="标签" height="127" y="805" width="501" x="113"/>
 	</e:Group>
+	<e:Button label="设置" id="btn_setting" y="9" x="472">
+		<e:skinName>
+			<e:Skin states="up,down,disabled" xmlns:w="http://ns.egret.com/wing">
+				<e:Image width="100%" height="100%" source="MoneyBG_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
 </e:Skin>

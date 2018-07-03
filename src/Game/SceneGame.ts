@@ -2,7 +2,7 @@
 class SceneGame extends eui.Component {
 	// 单例
 	private static shared:SceneGame;  // 定义一个静态的对象
-	
+	private btn_setting = new eui.Button();
 	public static Shared() {
 		if(SceneGame.shared == null) {
 			SceneGame.shared = new SceneGame();
@@ -14,6 +14,7 @@ class SceneGame extends eui.Component {
 		this.skinName = "src/Game/SceneGameSkin.exml";
 		this.btn_back.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onclick_back, this);
 		this.btn_text.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onclick_next, this);
+		this.btn_setting.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onclick_setting,this);
 
 	}
 	// 对象变量
@@ -100,6 +101,10 @@ class SceneGame extends eui.Component {
 			if(check_str === LevelDataManager.Shared().GetLevel(this.levelIndex).answer) {
 				console.log("win");
 				this.showWin();  // 调用显示成功的结果的方法
+			} else {
+				if(check_str.length == 4) {
+					SoundMenager.Shared().PlayWrong();
+				}
 			}
 		}
 	}
@@ -121,5 +126,10 @@ class SceneGame extends eui.Component {
 	private onclick_back(){
 		this.parent.addChild(SceneLevels.Shared());
 		this.parent.removeChild(this);
+	}
+	// 设置按钮的回调
+	private onclick_setting() {
+		SoundMenager.Shared().PlayClick();
+		this.addChild(GameSetting.Shared());
 	}
 }

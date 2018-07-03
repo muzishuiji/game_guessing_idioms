@@ -10,22 +10,23 @@ r.prototype = e.prototype, t.prototype = new r();
 };
 // 用来管理关卡数据的类
 // 每个问题(关卡)的数据结构
-var LevelDataItem = (function () {
+var LevelDataItem = (function (_super) {
+    __extends(LevelDataItem, _super);
     function LevelDataItem() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     return LevelDataItem;
-}());
+}(eui.UILayer));
 __reflect(LevelDataItem.prototype, "LevelDataItem");
 // 关卡数据管理器
-var LevelDataManager = (function (_super) {
-    __extends(LevelDataManager, _super);
+var LevelDataManager = (function () {
     function LevelDataManager() {
-        var _this = _super.call(this) || this;
         // 一个关卡的保存数据组
-        _this.items = [];
+        this.items = [];
         // 使用RES读取和构建JSON数据,JSON数据可以直接解析到目标结构
-        _this.items = RES.getRes("questions_json");
-        return _this;
+        console.log(RES);
+        RES.loadGroup("preload", 0);
+        this.items = RES.getRes("questions_json");
         // RES.addEventListene/r
     }
     LevelDataManager.Shared = function () {
@@ -66,6 +67,6 @@ var LevelDataManager = (function (_super) {
     // 单例
     LevelDataManager.shared = new LevelDataManager();
     return LevelDataManager;
-}(eui.Component));
+}());
 __reflect(LevelDataManager.prototype, "LevelDataManager");
 //# sourceMappingURL=LevelDataManager.js.map

@@ -10,7 +10,7 @@ class LevelDataItem {
 
 // 关卡数据管理器
 
-class LevelDataManager extends eui.Component {
+class LevelDataManager {
 	// 单例
 	private static shared = new LevelDataManager();
 	public static Shared() {
@@ -22,8 +22,9 @@ class LevelDataManager extends eui.Component {
 	// 一个关卡的保存数据组
 	private items:LevelDataItem[] = [];
 	public constructor() {
-		super();
 		// 使用RES读取和构建JSON数据,JSON数据可以直接解析到目标结构
+		console.log(RES);
+		RES.loadGroup("preload",0);
 		this.items = RES.getRes("questions_json");
 		// RES.addEventListene/r
 	}
